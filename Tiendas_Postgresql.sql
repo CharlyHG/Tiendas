@@ -189,3 +189,27 @@ select c.nombre, sum(o.total) as compras_por_cliente
 FROM cliente c 
 left join orden o on c.id = o.cliente_id  
 group by c.nombre 
+
+
+""" Parte 6: Agregando restricciones y realizando consultas """
+select c.nombre as nombre_categoria, avg(precio_unitario) as Precio_promedio 
+from producto p  
+left join categoria c on P.categoria_id = C.id 
+group by c.nombre 
+
+select c.nombre as nombre_categoria,p.nombre as nombre_producto, sum(s.cantidad) as cantidad
+from stock s  
+left join producto p  on s.producto_id  = p.id
+left join categoria c on p.categoria_id= c.id 
+group by c.nombre ,p.nombre
+
+select s.nombre as sucursal ,sum(total) as total_ventas  
+from orden o 
+left join sucursal s on o.sucursal_id = s.id 
+group by S.nombre 
+
+select C.nombre as cliente_nombre, sum(o.total) as total_compra
+from orden o 
+left join cliente c on O.cliente_id = C.id 
+group by c.nombre 
+limit 1
